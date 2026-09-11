@@ -1,5 +1,6 @@
 import { Landing } from './components/Landing'
 import { QuizView } from './components/QuizView'
+import { AskView } from './components/AskView'
 import { useQuiz } from './hooks/useQuiz'
 import { useTheme } from './hooks/useTheme'
 
@@ -12,10 +13,28 @@ export default function App() {
       <Landing
         questionCount={quiz.questionCount}
         onStart={quiz.startFresh}
+        onAsk={quiz.goAsk}
         themeMode={theme.mode}
         onThemeCycle={theme.cycle}
         loading={quiz.loading}
         error={quiz.error}
+      />
+    )
+  }
+
+  if (quiz.view === 'ask') {
+    return (
+      <AskView
+        onHome={quiz.goHome}
+        themeMode={theme.mode}
+        onThemeCycle={theme.cycle}
+        contextHint={
+          quiz.current
+            ? `quiz:${quiz.current.cc}`
+            : typeof window !== 'undefined'
+              ? window.location.href
+              : ''
+        }
       />
     )
   }
@@ -42,6 +61,7 @@ export default function App() {
       onPrev={quiz.goPrev}
       onShuffleRestart={quiz.startFresh}
       onHome={quiz.goHome}
+      onAsk={quiz.goAsk}
       progressPct={quiz.progressPct}
       accuracyPct={quiz.accuracyPct}
       answeredCount={quiz.answeredIds.size}

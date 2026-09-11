@@ -3,6 +3,7 @@ import type { ThemeMode } from '../hooks/useTheme'
 
 interface Props {
   onHome: () => void
+  onAsk: () => void
   progressPct: number
   accuracyPct: number
   answeredCount: number
@@ -15,6 +16,7 @@ interface Props {
 
 export function QuizHeader({
   onHome,
+  onAsk,
   progressPct,
   accuracyPct,
   answeredCount,
@@ -57,7 +59,16 @@ export function QuizHeader({
               {answeredCount}/{total} 풀이 · {correctCount}/{attemptCount} 정답
             </span>
 
-            <ThemeToggle mode={themeMode} onCycle={onThemeCycle} />
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={onAsk}
+                className="glass-btn rounded-full px-3 py-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-100"
+              >
+                질문
+              </button>
+              <ThemeToggle mode={themeMode} onCycle={onThemeCycle} />
+            </div>
           </div>
 
           <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-4">

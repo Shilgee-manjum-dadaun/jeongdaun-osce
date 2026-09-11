@@ -19,4 +19,4 @@ export interface ShuffledQuestion extends QuizQuestion {
   shuffledOptions: string[]
 }
 
-export type View = 'landing' | 'quiz'
+export type View = 'landing' | 'quiz' | 'ask'

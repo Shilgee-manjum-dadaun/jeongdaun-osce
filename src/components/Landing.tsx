@@ -4,6 +4,7 @@ import type { ThemeMode } from '../hooks/useTheme'
 interface Props {
   questionCount: number
   onStart: () => void
+  onAsk: () => void
   themeMode: ThemeMode
   onThemeCycle: () => void
   loading: boolean
@@ -13,6 +14,7 @@ interface Props {
 export function Landing({
   questionCount,
   onStart,
+  onAsk,
   themeMode,
   onThemeCycle,
   loading,
@@ -79,7 +81,7 @@ export function Landing({
             </p>
           )}
 
-          <div>
+          <div className="flex flex-wrap items-center gap-3">
             <button
               type="button"
               onClick={onStart}
@@ -87,6 +89,13 @@ export function Landing({
               className="btn-cta rounded-full px-10 py-3.5 text-base font-semibold disabled:opacity-50"
             >
               시작하기
+            </button>
+            <button
+              type="button"
+              onClick={onAsk}
+              className="glass-btn rounded-full px-6 py-3.5 text-base font-semibold text-zinc-800 dark:text-zinc-100"
+            >
+              질문하기
             </button>
           </div>
         </div>

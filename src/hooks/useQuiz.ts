@@ -70,6 +70,10 @@ export function useQuiz() {
     setView('landing')
   }, [])
 
+  const goAsk = useCallback(() => {
+    setView('ask')
+  }, [])
+
   const selectOption = useCallback(
     (option: string) => {
       if (answered || !current) return
@@ -126,6 +130,7 @@ export function useQuiz() {
     questionCount,
     startFresh,
     goHome,
+    goAsk,
     selectOption,
     goNext,
     goPrev,

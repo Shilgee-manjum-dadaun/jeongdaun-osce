@@ -17,6 +17,7 @@ interface Props {
   onPrev: () => void
   onShuffleRestart: () => void
   onHome: () => void
+  onAsk: () => void
   progressPct: number
   accuracyPct: number
   answeredCount: number
@@ -39,6 +40,7 @@ export function QuizView({
   onPrev,
   onShuffleRestart,
   onHome,
+  onAsk,
   progressPct,
   accuracyPct,
   answeredCount,
@@ -53,6 +55,7 @@ export function QuizView({
     <div className="min-h-dvh bg-[#f5f5f7] dark:bg-[#0b0b0f]">
       <QuizHeader
         onHome={onHome}
+        onAsk={onAsk}
         progressPct={progressPct}
         accuracyPct={accuracyPct}
         answeredCount={answeredCount}
