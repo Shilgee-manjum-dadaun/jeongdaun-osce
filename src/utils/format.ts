@@ -13,7 +13,8 @@ export function splitExplanation(text: string): Array<{ type: 'tag' | 'text'; va
   let m: RegExpExecArray | null
   while ((m = re.exec(raw))) {
     if (m.index > last) {
-      parts.push({ type: 'text', value: raw.slice(last, m.index) })
+      // Drop trailing spaces before a [tag] — line break is added in the UI
+      parts.push({ type: 'text', value: raw.slice(last, m.index).replace(/[ \t]+$/u, '') })
     }
     parts.push({ type: 'tag', value: m[0] })
     last = m.index + m[0].length

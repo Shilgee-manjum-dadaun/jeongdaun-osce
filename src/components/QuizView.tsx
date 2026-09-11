@@ -129,15 +129,23 @@ export function QuizView({
 
             {explainOpen && (
               <div className="glass rounded-[24px] px-5 py-4 text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-200">
-                {parts.map((p, i) =>
-                  p.type === 'tag' ? (
-                    <span key={i} className="tag">
-                      {p.value}
-                    </span>
-                  ) : (
-                    <span key={i}>{p.value}</span>
-                  ),
-                )}
+                {parts.map((part, i) => {
+                  if (part.type === 'tag') {
+                    const breakBefore = i > 0
+                    return (
+                      <span key={i}>
+                        {breakBefore ? <br /> : null}
+                        <span className="tag">{part.value}</span>
+                      </span>
+                    )
+                  }
+                  // Trim spaces that sat before a mid-sentence [tag]
+                  const value =
+                    i + 1 < parts.length && parts[i + 1]?.type === 'tag'
+                      ? part.value.replace(/[ \t]+$/u, '')
+                      : part.value
+                  return <span key={i}>{value}</span>
+                })}
               </div>
             )}
           </div>
